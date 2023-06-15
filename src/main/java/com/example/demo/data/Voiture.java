@@ -15,9 +15,6 @@ public class Voiture {
     int prix;
 
     public Voiture(){
-        this.id = 0;
-        this.marque = "";
-        this.prix = 0;
     }
 
     public Voiture(int identifiant, String mark, int price) {
