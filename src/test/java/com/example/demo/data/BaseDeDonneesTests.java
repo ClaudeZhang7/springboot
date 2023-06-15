@@ -16,8 +16,47 @@ public class BaseDeDonneesTests {
 
     @Test
     void uneVoiture(){
-        // tester les méthodes de l'interface CrudRepository qui permette d'accéder à la base de données: https://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/repository/CrudRepository.html
-        // save, find, delete...
+
+        Voiture voiture = new Voiture(1, "Mercedes", 6666);
+
+        when(voitureRepository.save(voiture)).thenReturn(voiture);
+
+        when(voitureRepository.findById(1)).thenReturn(java.util.Optional.of(voiture));
+
+        when(voitureRepository.findAll()).thenReturn(Collections.singletonList(voiture));
+
+        voiture.setPrix(6667);
+        when(voitureRepository.save(voiture)).thenReturn(voiture);
+
+        voitureRepository.deleteById(1);
+        when(voitureRepository.findById(1)).thenReturn(java.util.Optional.empty());
     }
+
+    @Test
+    void saveVoiture(){
+        Voiture voiture = new Voiture(2, "Twingo", 23000);
+        when(voitureRepository.save(voiture)).thenReturn(voiture);
+    }
+
+    @Test
+    void findVoiture(){
+        Voiture voiture = new Voiture(3, "Renault", 7000);
+        when(voitureRepository.findById(3)).thenReturn(java.util.Optional.of(voiture));
+    }
+
+    @Test
+    void updateVoiture(){
+        Voiture voiture = new Voiture(5, "Tesla", 98659);
+        voiture.setPrix(99999);
+        when(voitureRepository.save(voiture)).thenReturn(voiture);
+    }
+
+    @Test
+    void deleteVoiture(){
+        Voiture voiture = new Voiture(9, "Tesla", 98659);
+        voitureRepository.deleteById(9);
+        when(voitureRepository.findById(9)).thenReturn(java.util.Optional.empty());
+    }
+
 
 }

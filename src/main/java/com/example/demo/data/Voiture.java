@@ -7,35 +7,53 @@ import javax.persistence.Id;
 
 @Entity
 public class Voiture {
-int id;
-private String marque;
-private double prix;
 
+    int id;
 
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-public int getId() {
-return id;
-}
+    String marque;
 
-public void setId(int id) {
-this.id = id;
-}
+    int prix;
 
-public String getMarque() {
-return marque;
-}
+    public Voiture(){
+        this.id = 0;
+        this.marque = "";
+        this.prix = 0;
+    }
 
-public void setMarque(String marque) {
-this.marque = marque;
-}
+    public Voiture(int identifiant, String mark, int price) {
+        this.id = identifiant;
+        this.marque = mark;
+        this.prix = price;
+    }
 
-public double getPrix() {
-return prix;
-}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public int getId() {
+        return id;
+    }
 
-public void setPrix(double prix) {
-this.prix = prix;
-}
+    public void setId(int identifiant) {
+        this.id = identifiant;
+    }
+
+    public String getMarque() {
+        return this.marque;
+    }
+
+    public void setMarque(String mark) {
+        this.marque = mark;
+    }
+
+    public int getPrix() {
+        return this.prix;
+    }
+
+    public void setPrix(int price) {
+        this.prix = price;
+    }
+
+    public String toString(){
+        return  "Id : " + this.id + "Marque : " + this.marque + "Prix : " + this.prix;
+    }
 
 }
